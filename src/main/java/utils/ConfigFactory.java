@@ -5,7 +5,7 @@ import org.aeonbits.owner.ConfigCache;
 
 @UtilityClass
 public class ConfigFactory {
-    public static FrameworkConfigurer getConfig(){
-        return ConfigCache.getOrCreate(FrameworkConfigurer.class);
+    public static FrameworkConfig getConfig(){
+        return ConfigCache.getOrCreate(FrameworkConfig.class);
     }
 }

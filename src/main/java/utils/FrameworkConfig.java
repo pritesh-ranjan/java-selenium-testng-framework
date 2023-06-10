@@ -8,7 +8,7 @@ import org.aeonbits.owner.Config;
         "system:properties",
         "file:${user.dir}/src/main/resources/config.properties"
 })
-public interface FrameworkConfigurer extends Config {
+public interface FrameworkConfig extends Config {
     String browser();
     String environment();
 

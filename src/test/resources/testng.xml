@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Test Suite">
+    <listeners>
+        <listener class-name="utils.TestLogListener"/>
+    </listeners>
+
+    <test name="Test" parallel="methods" thread-count="2">
+        <classes>
+            <class name="SearchTests"/>
+        </classes>
+    </test>
+</suite>

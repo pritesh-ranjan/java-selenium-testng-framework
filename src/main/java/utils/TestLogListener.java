@@ -7,15 +7,16 @@ import org.apache.logging.log4j.Logger;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+import static utils.FrameworkUtilities.logger;
+
 
 public final class TestLogListener implements ITestListener {
-    private static final Logger logger = LogManager.getLogger(TestLogListener.class);
 
     @Override
     public void onTestStart(ITestResult result) {
         logger.info("Test started: {}\nAuthor: {}\njira id: {}",
                 result.getName(),
-                result.getMethod().getConstructorOrMethod().getMethod().getAnnotation(Author.class).automationAuthor(),
+                result.getMethod().getConstructorOrMethod().getMethod().getAnnotation(Author.class).author(),
                 result.getMethod().getConstructorOrMethod().getMethod().getAnnotation(TestCaseLink.class).jiraId());
 
     }
@@ -28,7 +29,7 @@ public final class TestLogListener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         logger.error("Test failed: {}", result.getName(), result.getThrowable());
-        //todo take screenshot
+        FrameworkUtilities.takeScreenShot(result.getName());
     }
 
     @Override
@@ -39,6 +40,6 @@ public final class TestLogListener implements ITestListener {
     @Override
     public void onTestFailedWithTimeout(ITestResult result){
         logger.error("Test failed with timeout: {}", result.getName());
-        //todo take screenshot
+        FrameworkUtilities.takeScreenShot(result.getName());
     }
 }
