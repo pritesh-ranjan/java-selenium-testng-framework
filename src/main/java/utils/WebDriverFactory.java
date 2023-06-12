@@ -5,7 +5,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.experimental.UtilityClass;
 import org.openqa.selenium.WebDriver;
 
-import static utils.FrameworkUtilities.logger;
+import static utils.FrameworkUtilities.LOGGER;
 
 @UtilityClass
 public class WebDriverFactory {
@@ -24,7 +24,7 @@ public class WebDriverFactory {
             };
             webDriver.manage().window().maximize();
             driver.set(webDriver);
-            logger.info("browser created: " + testBrowser);
+            LOGGER.info("browser created: {}", testBrowser);
         }
     }
 
@@ -33,7 +33,7 @@ public class WebDriverFactory {
         if (webDriver != null) {
             webDriver.quit();
             driver.remove();
-            logger.info("closing browser");
+            LOGGER.info("closing browser");
         }
     }
 

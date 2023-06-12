@@ -13,17 +13,17 @@ import utils.WebDriverFactory;
 import java.io.File;
 import java.io.IOException;
 
-import static constants.FrameworkConstants.SCREENSHOT_SAVE_PATH;
+import static constants.FrameworkConstants.EVIDENCE_STORAGE;
 
 public class BaseTest {
 
-    protected BaseTest(){
+    protected BaseTest() {
 
     }
 
     @BeforeSuite
-    public void createScreenshotDir() throws IOException {
-        FileUtils.forceMkdir(new File(SCREENSHOT_SAVE_PATH));
+    public void createDirectories() throws IOException {
+        FileUtils.forceMkdir(new File(EVIDENCE_STORAGE));
     }
 
     @BeforeMethod(alwaysRun = true)
@@ -33,11 +33,11 @@ public class BaseTest {
             testBrowser = Browsers.valueOf(result.getMethod().getConstructorOrMethod().getMethod().getAnnotation(Browser.class).name());
         else testBrowser = Browsers.valueOf(ConfigFactory.getConfig().browser());
         WebDriverFactory.createDriver(testBrowser);
-
+        WebDriverFactory.getDriver().get(ConfigFactory.getConfig().url());
     }
 
     @AfterMethod(alwaysRun = true)
-    public void tearDown(){
+    public void tearDown() {
         WebDriverFactory.closeDriver();
     }
 }

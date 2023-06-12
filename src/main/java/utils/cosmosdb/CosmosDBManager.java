@@ -5,11 +5,14 @@ import utils.ConfigFactory;
 
 import java.util.Objects;
 
+import static utils.FrameworkUtilities.LOGGER;
+
 public class CosmosDBManager {
+    private static boolean isConnected;
     private final CosmosAsyncClient client;
     private CosmosAsyncDatabase database;
-    private static boolean isConnected;
-    private CosmosDBManager(){
+
+    private CosmosDBManager() {
         var config = ConfigFactory.getConfig();
         Objects.requireNonNull(config.host(), "Please add database host URI");
         Objects.requireNonNull(config.accountKey(), "Please add database account key");
@@ -20,36 +23,36 @@ public class CosmosDBManager {
                 .buildAsyncClient();
     }
 
-    private static class SingletonHelper{
-        private static final CosmosDBManager cosmosDbManager = new CosmosDBManager();
-    }
-
-    public static CosmosDBManager getOrCreateConnection(){
+    public static CosmosDBManager getOrCreateConnection() {
         isConnected = true;
         return SingletonHelper.cosmosDbManager;
     }
 
-    public CosmosDBManager loadDataBase(String databaseName){
+    public static void closeIfConnectionExists() {
+        if (isConnected) {
+            SingletonHelper.cosmosDbManager.close();
+            isConnected = false;
+        }
+    }
+
+    public CosmosDBManager loadDataBase(String databaseName) {
         database = client.getDatabase(databaseName);
         return this;
     }
 
-    public CosmosAsyncContainer loadContainer(String containerName){
+    public CosmosAsyncContainer loadContainer(String containerName) {
         return database.getContainer(containerName);
     }
 
-    private void close(){
-        try{
+    private void close() {
+        try {
             client.close();
-        }catch (CosmosException exp){
-            // Todo logging
+        } catch (CosmosException exp) {
+            LOGGER.warn("error in closing cosmos db connection: {}", exp.getStackTrace());
         }
     }
 
-    public static void closeIfConnectionExists(){
-        if(isConnected){
-            SingletonHelper.cosmosDbManager.close();
-            isConnected = false;
-        }
+    private static class SingletonHelper {
+        private static final CosmosDBManager cosmosDbManager = new CosmosDBManager();
     }
 }

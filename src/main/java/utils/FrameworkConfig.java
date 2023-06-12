@@ -10,6 +10,7 @@ import org.aeonbits.owner.Config;
 })
 public interface FrameworkConfig extends Config {
     String browser();
+
     String environment();
 
     @Key("${environment}.url")

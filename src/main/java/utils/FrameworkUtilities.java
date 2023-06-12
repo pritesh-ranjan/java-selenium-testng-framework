@@ -13,17 +13,18 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 
-import static constants.FrameworkConstants.SCREENSHOT_SAVE_PATH;
+import static constants.FrameworkConstants.EVIDENCE_STORAGE;
 
 @UtilityClass
 public class FrameworkUtilities {
-    public static final Logger logger = LogManager.getLogger(FrameworkUtilities.class); // todo fix logging
-    public static void takeScreenShot(String methodName) {
+    public static final Logger LOGGER = LogManager.getLogger();
+
+    public static void takeScreenShot(String saveName) {
         try {
             WebDriver driver = WebDriverFactory.getDriver();
             TakesScreenshot screenshot = (TakesScreenshot) driver;
             File tempScreenshot = screenshot.getScreenshotAs(OutputType.FILE);
-            File saveScreenshotFile = new File(Paths.get(SCREENSHOT_SAVE_PATH, methodName+".png").toString());
+            File saveScreenshotFile = new File(Paths.get(EVIDENCE_STORAGE, saveName + ".png").toString());
             FileUtils.copyFile(tempScreenshot, saveScreenshotFile);
         } catch (IOException e) {
             throw new FailedScreenshotException(e);

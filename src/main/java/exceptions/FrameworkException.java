@@ -1,11 +1,11 @@
 package exceptions;
 
-public class FrameworkException extends RuntimeException{
-    public FrameworkException(final Throwable cause){
+public class FrameworkException extends RuntimeException {
+    public FrameworkException(final Throwable cause) {
         super(cause);
     }
 
-    public FrameworkException(String message){
+    public FrameworkException(String message) {
         super(message);
     }
 }

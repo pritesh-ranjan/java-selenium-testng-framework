@@ -10,4 +10,5 @@ public class UIConstants {
     public static final By LI = By.cssSelector("li");
     public static final By SPAN = By.cssSelector("span");
     public static final By DIV = By.cssSelector("div");
+    public static final String SPACE = " ";
 }

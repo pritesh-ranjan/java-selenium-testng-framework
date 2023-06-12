@@ -7,7 +7,7 @@ public abstract class AbstractCosmosContainer {
     protected CosmosAsyncContainer container;
     protected String containerName;
 
-    protected AbstractCosmosContainer(String databaseName, String containerName){
+    protected AbstractCosmosContainer(String databaseName, String containerName) {
         container = CosmosDBManager
                 .getOrCreateConnection()
                 .loadDataBase(databaseName)
@@ -15,7 +15,7 @@ public abstract class AbstractCosmosContainer {
         this.containerName = containerName;
     }
 
-    public <T> CosmosPagedFlux<T> getResultsFromQuery(String query, Class<T> pojo){
+    public <T> CosmosPagedFlux<T> getResultsFromQuery(String query, Class<T> pojo) {
         return container.queryItems(query, pojo);
     }
 }
