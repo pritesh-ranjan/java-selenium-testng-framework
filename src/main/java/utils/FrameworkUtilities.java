@@ -2,6 +2,7 @@ package utils;
 
 import exceptions.FailedScreenshotException;
 import lombok.experimental.UtilityClass;
+import org.aeonbits.owner.ConfigCache;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,6 +19,10 @@ import static constants.FrameworkConstants.EVIDENCE_STORAGE;
 @UtilityClass
 public class FrameworkUtilities {
     public static final Logger LOGGER = LogManager.getLogger();
+
+    public static FrameworkConfig getConfig() {
+        return ConfigCache.getOrCreate(FrameworkConfig.class);
+    }
 
     public static void takeScreenShot(String saveName) {
         try {

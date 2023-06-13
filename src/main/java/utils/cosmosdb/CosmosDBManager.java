@@ -1,11 +1,12 @@
 package utils.cosmosdb;
 
 import com.azure.cosmos.*;
-import utils.ConfigFactory;
+
 
 import java.util.Objects;
 
 import static utils.FrameworkUtilities.LOGGER;
+import static utils.FrameworkUtilities.getConfig;
 
 public class CosmosDBManager {
     private static boolean isConnected;
@@ -13,7 +14,7 @@ public class CosmosDBManager {
     private CosmosAsyncDatabase database;
 
     private CosmosDBManager() {
-        var config = ConfigFactory.getConfig();
+        var config = getConfig();
         Objects.requireNonNull(config.host(), "Please add database host URI");
         Objects.requireNonNull(config.accountKey(), "Please add database account key");
 
