@@ -12,9 +12,6 @@ import utils.WebDriverFactory;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.Duration;
-import java.time.temporal.TemporalUnit;
-import java.util.concurrent.TimeUnit;
 
 import static constants.FrameworkConstants.EVIDENCE_STORAGE;
 import static utils.FrameworkUtilities.getConfig;
