@@ -6,7 +6,7 @@ The Test Automation Framework is designed for automating UI testing using Seleni
 ## Features
 
 - **Version control:** The project code is stored in Azure Repos, utilizing Git for efficient version control.
-- **CI/CD:** Azure DevOps pipeline is used for continuous integration and deployment, enabling seamless automation workflows.
+- **CI/CD:** GitHub pipeline is used for continuous integration and deployment, enabling seamless automation workflows.
 - **UI Testing:** Java Selenium and TestNG are employed for UI testing within the framework.
 - **Build Management:** Maven is used for the build lifecycle, with project dependencies defined in the `pom.xml` file.
 - **Configuration Management:** Test framework configuration information is stored in a properties file.
@@ -20,6 +20,12 @@ The Test Automation Framework is designed for automating UI testing using Seleni
 - **Logging:** Utilizes log4j along with TestNG ITestListener for comprehensive logging.
 - **Utility Package:** Contains common utility methods, including a properties reader for retrieving configuration information, methods for reading test data from JSON files, and database connection and query execution methods.
 - **Code Readability:** Lombok is used to enhance code readability and conciseness.
+
+## Framework Architecture
+
+![img.png](framework_architechture.png)
+
+
 
 ## Usage
 
